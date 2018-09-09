@@ -16,48 +16,38 @@ def remove_non_strings(array)
 end
 
 def count_elements(array)
-  name_count = array.uniq
-  name_count.each do |hash|
-    hash[:count] = 0
-  end
+  name_count = array.uniq()
+  name_count.each {|hash| hash[:count] = 0}
 
   array.each do |hash1|
     name_count.each do |hash2|
-      if hash2[:name] == hash1[:name]
-        hash2[:count] += 1
-      end
+      hash2[:count] += 1 if hash2[:name] == hash1[:name]
     end
   end
-
   return name_count
 end
 
 def merge_data(keys, data)
   merged_array = []
-
   keys.each do |key|
     key_data = data[0][key[:first_name]]
     merged_array << key.merge(key_data)
   end
-
   return merged_array
 end
 
 def find_cool(array)
   cool_hashes = []
-
   array.each do |hash|
     if hash[:temperature] == "cool"
       cool_hashes << hash
     end
   end
-
   return cool_hashes
 end
 
 def organize_schools(hash)
   organized = {}
-
   hash.each do |key, value|
     location = value[:location]
     if organized.has_key?(location)
@@ -66,6 +56,5 @@ def organize_schools(hash)
       organized[location] = [key]
     end
   end
-
   return organized
 end
